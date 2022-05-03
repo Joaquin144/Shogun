@@ -1,1 +1,9 @@
 /build
+build.gradle
+proguard-rules.pro
+/test
+/androidTest
+google-services.json
+src/test
+src/androidTest
+src/main/java/com/devcommop/joaquin/shogun/Constants.kt

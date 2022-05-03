@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "985576307644",
+    "project_id": "shogun-ae512",
+    "storage_bucket": "shogun-ae512.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:985576307644:android:f0afbef0de335514e989b9",
+        "android_client_info": {
+          "package_name": "com.devcommop.joaquin.shogun"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "985576307644-4j6l9is9h12b20dv9hb4b40t4grbvb7k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.devcommop.joaquin.shogun",
+            "certificate_hash": "31e87a222c62a2565bf2c64a2bbbd24499f23810"
+          }
+        },
+        {
+          "client_id": "985576307644-otiikj5j2am1p8tudd4hhr2ggmdq2l55.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAMVAD5dbUHHL_xnzP7EqrKaJqnW9bqyMc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "985576307644-otiikj5j2am1p8tudd4hhr2ggmdq2l55.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
