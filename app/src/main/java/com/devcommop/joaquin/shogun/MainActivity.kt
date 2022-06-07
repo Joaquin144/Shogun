@@ -2,48 +2,58 @@ package com.devcommop.joaquin.shogun
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import androidx.activity.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.devcommop.joaquin.shogun.databinding.ActivityMainBinding
-import com.google.firebase.messaging.FirebaseMessaging
-import com.google.gson.Gson
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
-const val TOPIC = "/topics/myTopic" //subsribe  a topic called as myTopic
+/*
+StateFlow : Is a HotFlow means it will keep emitting even if their are no collectors
+ */
 class MainActivity : AppCompatActivity(){
-    lateinit var binding: ActivityMainBinding
+    private var _binding: ActivityMainBinding? = null
+    private val binding get() = _binding!!
+    private val viewModel: MainViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setOnClickListeners()
+        subscribeToObservables()
+    }
 
-        FirebaseMessaging.getInstance().subscribeToTopic(TOPIC)
-
-        binding.sendBtn.setOnClickListener{
-            val title = binding.titleET.text.toString()
-            val message = binding.messageET.text.toString()
-            val token = binding.tokenET.text.toString()
-            if(title.isNotEmpty() && message.isNotEmpty()){
-                PushNotification(
-                    data = NotificationData(title = title, message = message),
-                    to =  TOPIC
-                ).also{
-                    sendNotification(it)
-                }
+    private fun subscribeToObservables() {
+        viewModel.liveData.observe(this){
+            binding.btnLiveData.text = it
+        }
+        //To do for flow we must have coroutines as flows are part of coroutines
+        lifecycleScope.launchWhenStarted {
+            viewModel.stateFLow.collectLatest {
+                binding.btnStateFlow.text = it
+            }
+            viewModel.sharedFlow.collectLatest {
+                binding.btnSharedFlow.text = it
             }
         }
     }
-    private fun sendNotification(notification: PushNotification) = CoroutineScope(Dispatchers.IO).launch{
-        try{
-            val response = RetrofitInstance.api.postNotification(notification = notification)
-            if(response.isSuccessful){
-                Log.d("### MainAct","Response : ${Gson().toJson(response)}")
-            }else{
-                Log.d("### MainAct",response.errorBody().toString())
+
+    private fun setOnClickListeners() {
+        binding.btnFlow.setOnClickListener{
+            lifecycleScope.launch{
+                viewModel.triggerFlow().collectLatest{
+                    binding.btnFlow.text = it
+                }
             }
-        }catch(e: Exception){
-            Log.d("### MainAct",e.toString())
         }
+        binding.btnLiveData.setOnClickListener { viewModel.triggerLiveData() }
+        binding.btnStateFlow.setOnClickListener { viewModel.triggerStateFlow() }
+        binding.btnSharedFlow.setOnClickListener { viewModel.triggerSharedFlow() }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }

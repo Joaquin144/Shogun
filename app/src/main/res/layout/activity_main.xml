@@ -8,44 +8,46 @@
     android:padding="20dp"
     android:layout_gravity="center">
 
-    <EditText
-        android:id="@+id/titleET"
-        android:layout_width="0dp"
+
+    <Button
+        android:id="@+id/btn_live_data"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="Enter title"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/sendBtn"
-        android:layout_marginEnd="8dp"
+        android:layout_marginTop="128dp"
+        android:text="LiveData"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.436"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/messageET"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:hint="Enter message"
-        app:layout_constraintEnd_toEndOf="@+id/titleET"
-        app:layout_constraintStart_toStartOf="@+id/titleET"
-        app:layout_constraintTop_toBottomOf="@+id/titleET" />
-
-    <EditText
-        android:id="@+id/tokenET"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:hint="Enter token"
-        app:layout_constraintEnd_toEndOf="@+id/messageET"
-        app:layout_constraintStart_toStartOf="@+id/messageET"
-        app:layout_constraintTop_toBottomOf="@+id/messageET" />
-
     <Button
-        android:id="@+id/sendBtn"
+        android:id="@+id/btn_state_flow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Send"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="State Flow"
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_live_data" />
+
+    <Button
+        android:id="@+id/btn_shared_flow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SHared Flow"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_state_flow" />
+
+    <Button
+        android:id="@+id/btn_flow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Flow"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_shared_flow" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
